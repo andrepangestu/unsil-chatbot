@@ -39,6 +39,9 @@ dependencies:
   firebase_auth: ^4.1.1
   dialog_flowtter: ^0.3.3
   firebase_core: ^2.1.1
+  bubble: ^1.2.1
+  linkable: ^3.0.1
+  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +73,9 @@ flutter:
     - assets/dialog_flow_auth.json
     - assets/logo/logo_chatbot.png
     - assets/image/3d-tiles-background.png
+    - assets/image/robot.png
+    - assets/image/robot.jpg
+    - assets/image/default.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,6 +1,7 @@
-import 'package:chatbot_unsil/components/messages.dart';
+import 'package:chatbot_unsil/components/chat.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChatbotScreen extends StatefulWidget {
   // const ChatbotScreen({ Key ? key}) : super(key : key);
@@ -13,6 +14,7 @@ class ChatbotScreen extends StatefulWidget {
 class _ChatbotScreenState extends State<ChatbotScreen> {
   late DialogFlowtter dialogFlowtter;
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   List<Map<String, dynamic>> messages = [];
 
@@ -21,7 +23,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
 
     super.initState();
-
   }
 
   @override
@@ -32,32 +33,99 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       ),
       body: Container(
         child: Column(
-          children: [
-            Expanded(child: Messages(messages: messages)),
+          children: <Widget>[
             Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 14,
-                vertical: 8
-              ),
-              color: Colors.blueGrey,
-              child: Row(
-                children: [
-                  Expanded(
-                      child: TextField(
-                        controller: _controller,
-                        style: TextStyle(
-                          color: Colors.black
-                        ),
-                      )
+              padding: EdgeInsets.only(top: 15, bottom: 10),
+              child: Text("Today, ${DateFormat("Hm").format(DateTime.now())}", style: TextStyle(
+                  fontSize: 20
+              ),),
+            ),
+            Flexible(
+                child: ListView.builder(
+                    reverse: true,
+                    itemCount: messages.length,
+                    itemBuilder: (context, index) => Chat(
+                        messages: messages,
+                        index: messages.length - 1 - index
+                    )
+                )
+            ),
+
+            SizedBox(
+              height: 20,
+            ),
+
+            Divider(
+              height: 5.0,
+              color: Colors.greenAccent,
+            ),
+
+            Container(
+              child: ListTile(
+                title: Container(
+                  height: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(
+                        15)),
+                    color: Color.fromRGBO(220, 220, 220, 1),
                   ),
-                  IconButton(
-                      onPressed: () {
+                  padding: EdgeInsets.only(left: 15),
+                  child: TextFormField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      hintText: "Enter a Message...",
+                      hintStyle: TextStyle(
+                          color: Colors.black26
+                      ),
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                    ),
+
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black
+                    ),
+                    onChanged: (value) {
+
+                    },
+                  ),
+                ),
+
+                trailing: IconButton(
+                    icon: Icon(
+                      Icons.send,
+                      size: 30.0,
+                      color: Colors.greenAccent,
+                    ),
+                    onPressed: () {
+                      if (_controller.text.isEmpty) {
+                        print("empty message");
+                      } else {
                         sendMessage(_controller.text);
                         _controller.clear();
-                      },
-                      icon: Icon(Icons.send))
-                ],
+                        // setState(() {
+                        //   messsages.insert(0,
+                        //       {"data": 1, "message": messageInsert.text});
+                        // });
+                        // response(messageInsert.text);
+                        // messageInsert.clear();
+                      }
+
+                      FocusScopeNode currentFocus = FocusScope.of(context);
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
+                    }),
+
               ),
+
+            ),
+
+            SizedBox(
+              height: 15.0,
             )
           ],
         ),
@@ -82,6 +150,10 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       setState(() {
         addMessage(response.message!);
       });
+
+
+
+      print(messages);
     }
   }
 
