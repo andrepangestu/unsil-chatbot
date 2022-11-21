@@ -1,4 +1,5 @@
 import 'package:chatbot_unsil/components/chat.dart';
+import 'package:chatbot_unsil/constans.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -29,7 +30,22 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CHATBOT UNSIL"),
+        title: Row(
+          children: [
+            CircleAvatar(
+              backgroundImage: AssetImage("assets/image/robot.jpg"),
+            ),
+            SizedBox(width: kDefaultPadding * 0.75,),
+            Column(
+              children: [
+                Text(
+                  "SITEKBOT",
+                  style: TextStyle(fontSize: 18),
+                )
+              ],
+            )
+          ],
+        ),
       ),
       body: Container(
         child: Column(
