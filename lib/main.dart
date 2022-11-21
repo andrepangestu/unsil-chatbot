@@ -85,7 +85,7 @@ class _SplashScreenState extends State<Splashscreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Text(
-                          "UNSIL Chatbot",
+                          "SITEKBOT",
                           style: new TextStyle(
                             color: Colors.white,
                             fontSize: 22.0,
@@ -108,7 +108,7 @@ class _SplashScreenState extends State<Splashscreen> {
                     Padding(
                       padding: EdgeInsets.only(top: 20.0),
                     ),
-                    Text("Melayani Keluhan Anda",
+                    Text("Melayani Kebutuhan Informasi",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,
