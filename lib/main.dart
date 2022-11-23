@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Splashscreen(),
-      routes: routes,
+      routes: routes
     );
   }
 }
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<Splashscreen> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: Colors.blueAccent
+                color: Color.fromRGBO(23, 157, 139, 1),
             ),
           ),
           Column(
@@ -68,19 +68,12 @@ class _SplashScreenState extends State<Splashscreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 50.0,
-                          child: Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Container(
-                                decoration: new BoxDecoration(
-                                    image: new DecorationImage(
-                                        image: new AssetImage('assets/logo/logo_chatbot.png')
-                                    )
-                                ),
-                              )
-                          )
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage("assets/image/robot.jpg"),
+                        )
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),

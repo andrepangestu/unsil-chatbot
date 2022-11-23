@@ -12,7 +12,6 @@ class Chat extends StatefulWidget {
   State<Chat> createState() => _ChatState();
 }
 
-
 class _ChatState extends State<Chat> {
 
   @override
@@ -22,6 +21,7 @@ class _ChatState extends State<Chat> {
       child: Row(
         mainAxisAlignment: widget.messages[widget.index]['isUserMessage'] ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
+
           !widget.messages[widget.index]['isUserMessage'] ? Container(
             height: 60,
             width: 60,
@@ -37,13 +37,11 @@ class _ChatState extends State<Chat> {
                 color: !widget.messages[widget.index]['isUserMessage']
                     ? Color.fromRGBO(23, 157, 139, 1) : Colors.orange,
                 elevation: 0.0,
-
                 child: Padding(
                   padding: EdgeInsets.all(2.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-
                       SizedBox(
                         width: 10.0,
                       ),

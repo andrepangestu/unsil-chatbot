@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ChatbotScreen extends StatefulWidget {
-  // const ChatbotScreen({ Key ? key}) : super(key : key);
-
   @override
-  // _ChatbotScreenState createState() => _ChatbotScreenState();
   State<StatefulWidget> createState() => new _ChatbotScreenState();
 }
 
@@ -22,6 +19,21 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   @override
   void initState() {
     DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+
+    String defaultText = 'Selamat datang di Sitekbot\n'
+        'Sebuah sistem lain dari layanan informasi website fakultas teknik universitas siliwangi untuk membantu pertanyaan seputar Fakultas Teknik Universitas Siliwangi.\n'
+        '1.	Profil\n'
+        '2.	Jurusan\n'
+        '3.	Akademik\n'
+        '4.	Penelitian & pengabdian\n'
+        '5.	Kemahasiswaan & alumni\n'
+        '6. Informasi';
+
+    setState(() {
+      addMessage(Message(
+          text: DialogText(text: [defaultText])
+      ), false);
+    });
 
     super.initState();
   }
@@ -54,7 +66,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
               padding: EdgeInsets.only(top: 15, bottom: 10),
               child: Text("Today, ${DateFormat("Hm").format(DateTime.now())}", style: TextStyle(
                   fontSize: 20
-              ),),
+              )),
             ),
             Flexible(
                 child: ListView.builder(
@@ -122,12 +134,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                       } else {
                         sendMessage(_controller.text);
                         _controller.clear();
-                        // setState(() {
-                        //   messsages.insert(0,
-                        //       {"data": 1, "message": messageInsert.text});
-                        // });
-                        // response(messageInsert.text);
-                        // messageInsert.clear();
                       }
 
                       FocusScopeNode currentFocus = FocusScope.of(context);
@@ -135,9 +141,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                         currentFocus.unfocus();
                       }
                     }),
-
               ),
-
             ),
 
             SizedBox(
@@ -166,10 +170,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       setState(() {
         addMessage(response.message!);
       });
-
-
-
-      print(messages);
     }
   }
 
