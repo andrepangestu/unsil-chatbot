@@ -19,9 +19,9 @@ class _ChatState extends State<Chat> {
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: widget.messages[widget.index]['isUserMessage'] ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
-
           !widget.messages[widget.index]['isUserMessage'] ? Container(
             height: 60,
             width: 60,

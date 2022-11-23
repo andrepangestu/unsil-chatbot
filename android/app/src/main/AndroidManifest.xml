@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chatbot_unsil">
    <application
-        android:label="chatbot_unsil"
+        android:label="SITEKBOT"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
